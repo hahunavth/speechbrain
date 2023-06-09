@@ -36,6 +36,9 @@ def prepare_SLURP(
     if skip_prep:
         return
     # If the data folders do not exist, we need to download/extract the data
+    if not os.path.isdir(data_folder):
+        os.mkdir(data_folder)
+
     if not os.path.isdir(os.path.join(data_folder, "slurp_synth")):
         # Check for zip file and download if it doesn't exist
         zip_location = os.path.join(data_folder, "slurp_synth.tar.gz")
