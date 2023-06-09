@@ -3,6 +3,7 @@ import jsonlines
 from speechbrain.dataio.dataio import read_audio, merge_csvs
 from speechbrain.utils.data_utils import download_file
 import shutil
+import gdown
 
 try:
     import pandas as pd
@@ -39,6 +40,8 @@ def prepare_SLURP(
         # Check for zip file and download if it doesn't exist
         zip_location = os.path.join(data_folder, "slurp_synth.tar.gz")
         if not os.path.exists(zip_location):
+            # Download the zip file from drive faster than zenodo
+            gdown.download(id="15EZv2xJT4OrqPgbMT_xIOQbKrlYnBukt", output=zip_location, quiet=False, fuzzy=True)
             url = "https://zenodo.org/record/4274930/files/slurp_synth.tar.gz?download=1"
             download_file(url, zip_location, unpack=True)
         else:
@@ -49,6 +52,9 @@ def prepare_SLURP(
         # Check for zip file and download if it doesn't exist
         zip_location = os.path.join(data_folder, "slurp_real.tar.gz")
         if not os.path.exists(zip_location):
+            # Download the zip file from drive faster than zenodo
+            gdown.download(id="14kPQCaobprOnArK-VofYZyhyLnlXeFt7", output=zip_location, quiet=False, fuzzy=True)
+
             url = "https://zenodo.org/record/4274930/files/slurp_real.tar.gz?download=1"
             download_file(url, zip_location, unpack=True)
         else:
